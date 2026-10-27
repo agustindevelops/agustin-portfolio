@@ -16,7 +16,7 @@ function Link({
       className={cn(
         variant
           ? buttonVariants({ variant, size })
-          : "text-sm font-medium text-foreground underline-offset-4 transition-colors hover:underline",
+          : "text-sm font-medium text-brand underline-offset-4 transition-colors duration-200 hover:text-brand/80",
         "cursor-pointer",
         className,
       )}

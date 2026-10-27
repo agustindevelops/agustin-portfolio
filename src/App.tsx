@@ -1,4 +1,5 @@
-import type { ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
+import { Menu, X } from "lucide-react"
 
 import portrait from "@/assets/agustin-portrait.jpg"
 import { Badge } from "@/components/ui/badge"
@@ -58,40 +59,112 @@ function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-20 py-24 ${soft ? "bg-soft" : "bg-background"}`}
+      className={`scroll-mt-24 py-16 md:py-24 ${soft ? "bg-soft" : "bg-background"}`}
     >
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="mb-3 h-1 w-10 rounded-full bg-brand" />
-        <h2 className="text-3xl">{title}</h2>
-        <div className="mt-12">{children}</div>
+        <h2 className="text-2xl sm:text-3xl">{title}</h2>
+        <div className="mt-8 md:mt-12">{children}</div>
       </div>
     </section>
   )
 }
 
-function App() {
+function Header() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false)
+    }
+
+    const desktop = window.matchMedia("(min-width: 1024px)")
+    function onViewportChange() {
+      if (desktop.matches) setOpen(false)
+    }
+
+    window.addEventListener("keydown", onKeyDown)
+    desktop.addEventListener("change", onViewportChange)
+    return () => {
+      window.removeEventListener("keydown", onKeyDown)
+      desktop.removeEventListener("change", onViewportChange)
+    }
+  }, [])
+
+  function close() {
+    setOpen(false)
+  }
+
   return (
-    <div id="top" className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-          <Link
-            href="#top"
-            className="font-heading text-lg font-bold text-brand hover:text-brand"
-          >
-            Agustin.dev
+    <header className="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
+        <Link
+          href="#top"
+          onClick={close}
+          className="font-heading text-lg font-bold text-brand hover:text-brand"
+        >
+          Agustin.dev
+        </Link>
+        <nav className="hidden items-center gap-x-6 lg:flex" aria-label="Primary">
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+          <Link href="#resume" variant="default">
+            Resume
           </Link>
-          <nav className="flex flex-wrap items-center gap-x-6 gap-y-3">
+        </nav>
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          className="size-11 lg:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((current) => !current)}
+        >
+          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+        </Button>
+      </div>
+      {open ? (
+        <nav
+          id="mobile-nav"
+          aria-label="Mobile"
+          className="border-t border-border px-4 py-3 sm:px-6 lg:hidden"
+        >
+          <div className="mx-auto flex max-w-5xl flex-col gap-1">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={close}
+                className="rounded-lg px-3 py-3 text-base hover:bg-muted"
+              >
                 {item.label}
               </Link>
             ))}
-            <Link href="#resume" variant="default">
+            <Link
+              href="#resume"
+              variant="default"
+              size="lg"
+              onClick={close}
+              className="mt-2 w-full"
+            >
               Resume
             </Link>
-          </nav>
-        </div>
-      </header>
+          </div>
+        </nav>
+      ) : null}
+    </header>
+  )
+}
+
+function App() {
+  return (
+    <div id="top" className="min-h-screen overflow-x-clip bg-background text-foreground">
+      <Header />
 
       <main>
         <section className="relative overflow-hidden bg-background">
@@ -99,9 +172,11 @@ function App() {
             aria-hidden
             className="pointer-events-none absolute -right-16 top-16 size-72 rounded-full bg-lilac/60"
           />
-          <div className="relative mx-auto grid max-w-5xl items-center gap-12 px-6 py-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.85fr)] lg:py-28">
-            <div>
-              <h1 className="text-4xl sm:text-5xl">Agustin Manriquez Cruz</h1>
+          <div className="relative mx-auto grid max-w-5xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.85fr)] lg:gap-12 lg:py-28">
+            <div className="min-w-0">
+              <h1 className="text-balance text-3xl sm:text-5xl">
+                Agustin Manriquez Cruz
+              </h1>
               <Badge variant="mint" className="mt-4 h-7 px-3 text-sm">
                 Open to opportunities
               </Badge>
@@ -124,7 +199,7 @@ function App() {
                 href="#projects"
                 variant="default"
                 size="lg"
-                className="mt-8 w-fit"
+                className="mt-8 w-full sm:w-fit"
               >
                 Explore My Work
               </Link>
@@ -134,13 +209,13 @@ function App() {
               alt="Agustin Manriquez Cruz"
               width={400}
               height={400}
-              className="mx-auto aspect-square w-full max-w-sm rounded-xl object-cover ring-1 ring-border"
+              className="mx-auto aspect-square w-full max-w-72 rounded-xl object-cover ring-1 ring-border sm:max-w-sm"
             />
           </div>
-          <div className="relative mx-auto grid max-w-5xl gap-8 border-t border-border px-6 py-10 sm:grid-cols-3">
+          <div className="relative mx-auto grid max-w-5xl gap-6 border-t border-border px-4 py-8 sm:grid-cols-3 sm:gap-8 sm:px-6">
             {stats.map((stat) => (
               <div key={stat.label}>
-                <p className="font-heading text-4xl font-bold text-brand">
+                <p className="font-heading text-3xl font-bold text-brand sm:text-4xl">
                   {stat.value}
                 </p>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
@@ -153,7 +228,7 @@ function App() {
 
         <Section id="about" title="About" soft>
           <div className="grid items-center gap-10 md:grid-cols-[200px_1fr]">
-            <Skeleton className="aspect-square w-full max-w-48 rounded-xl" />
+            <Skeleton className="mx-auto aspect-square w-full max-w-48 rounded-xl md:mx-0" />
             <div className="space-y-3">
               <Skeleton className="h-4 w-full" />
               <Skeleton className="h-4 w-full" />
@@ -247,7 +322,11 @@ function App() {
             <Skeleton className="h-4 w-full" />
             <Skeleton className="h-4 w-4/5" />
           </div>
-          <Button type="button" size="lg" className="mt-8 h-12 px-8 text-base">
+          <Button
+            type="button"
+            size="lg"
+            className="mt-8 h-12 w-full px-8 text-base sm:w-fit"
+          >
             Get in Touch
           </Button>
         </Section>

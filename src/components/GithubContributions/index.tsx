@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query"
-import { format, parseISO } from "date-fns"
 
 import { Link } from "@/components/ui/link"
 import { Skeleton } from "@/components/ui/skeleton"
 
-const PROFILE = "https://github.com/agustindevelops"
-const CONTRIBUTIONS =
-  "https://github-contributions-api.jogruber.de/v4/agustindevelops?y=last"
+import {
+  contributionTitle,
+  fetchContributions,
+  githubProfile,
+  githubProfileUrl,
+  groupWeeks,
+  monthLabel,
+} from "./functions"
 
 const levelClass = [
   "bg-lilac/70",
@@ -16,56 +20,16 @@ const levelClass = [
   "bg-brand",
 ] as const
 
-type Contribution = {
-  date: string
-  count: number
-  level: 0 | 1 | 2 | 3 | 4
-}
-
-type ContributionResponse = {
-  total: { lastYear: number }
-  contributions: Contribution[]
-}
-
-function groupWeeks(days: Contribution[]) {
-  const first = new Date(`${days[0].date}T00:00:00`)
-  const cells: Array<Contribution | null> = [
-    ...Array.from({ length: first.getDay() }, () => null),
-    ...days,
-  ]
-  const weeks: Array<Array<Contribution | null>> = []
-
-  for (let index = 0; index < cells.length; index += 7) {
-    const week = cells.slice(index, index + 7)
-    while (week.length < 7) week.push(null)
-    weeks.push(week)
-  }
-
-  return weeks
-}
-
-function monthLabel(week: Array<Contribution | null>) {
-  const start = week.find((day) => day?.date.endsWith("-01"))
-  if (!start) return ""
-  return format(parseISO(start.date), "MMM")
-}
-
-async function fetchContributions() {
-  const response = await fetch(CONTRIBUTIONS)
-  if (!response.ok) throw new Error("Could not load contributions")
-  return response.json() as Promise<ContributionResponse>
-}
-
 function GithubContributions() {
   const { data, isPending, isError } = useQuery({
-    queryKey: ["github-contributions", "agustindevelops"],
+    queryKey: ["github-contributions", githubProfile],
     queryFn: fetchContributions,
   })
 
   if (isError) {
     return (
-      <Link href={PROFILE} target="_blank" rel="noreferrer">
-        github.com/agustindevelops
+      <Link href={githubProfileUrl} target="_blank" rel="noreferrer">
+        github.com/{githubProfile}
       </Link>
     )
   }
@@ -91,8 +55,8 @@ function GithubContributions() {
           </span>{" "}
           contributions in the last year
         </p>
-        <Link href={PROFILE} target="_blank" rel="noreferrer">
-          @agustindevelops
+        <Link href={githubProfileUrl} target="_blank" rel="noreferrer">
+          @{githubProfile}
         </Link>
       </div>
       <div className="overflow-x-auto">
@@ -121,7 +85,7 @@ function GithubContributions() {
                 day ? (
                   <span
                     key={day.date}
-                    title={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`}
+                    title={contributionTitle(day)}
                     className={`aspect-square rounded-[2px] ${levelClass[day.level]}`}
                   />
                 ) : (

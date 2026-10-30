@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { GithubContributions } from "@/components/github-contributions"
+import { GithubContributions } from "@/components/GithubContributions"
 import { Link } from "@/components/ui/link"
 import { Skeleton } from "@/components/ui/skeleton"
 

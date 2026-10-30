@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
 
 import { Link } from "@/components/ui/link"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -64,31 +64,19 @@ function monthLabel(week: Array<Contribution | null>) {
   return months[Number(start.date.slice(5, 7)) - 1]
 }
 
+async function fetchContributions() {
+  const response = await fetch(CONTRIBUTIONS)
+  if (!response.ok) throw new Error("Could not load contributions")
+  return response.json() as Promise<ContributionResponse>
+}
+
 function GithubContributions() {
-  const [data, setData] = useState<ContributionResponse | null>(null)
-  const [failed, setFailed] = useState(false)
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["github-contributions", "agustindevelops"],
+    queryFn: fetchContributions,
+  })
 
-  useEffect(() => {
-    let ignore = false
-
-    fetch(CONTRIBUTIONS)
-      .then((response) => {
-        if (!response.ok) throw new Error("Could not load contributions")
-        return response.json() as Promise<ContributionResponse>
-      })
-      .then((payload) => {
-        if (!ignore) setData(payload)
-      })
-      .catch(() => {
-        if (!ignore) setFailed(true)
-      })
-
-    return () => {
-      ignore = true
-    }
-  }, [])
-
-  if (failed) {
+  if (isError) {
     return (
       <Link href={PROFILE} target="_blank" rel="noreferrer">
         github.com/agustindevelops
@@ -96,7 +84,7 @@ function GithubContributions() {
     )
   }
 
-  if (!data) {
+  if (isPending || !data) {
     return (
       <div className="space-y-3" aria-hidden>
         <Skeleton className="h-4 w-56" />

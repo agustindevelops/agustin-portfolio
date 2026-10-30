@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import { format, parseISO } from "date-fns"
 
 import { Link } from "@/components/ui/link"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -6,21 +7,6 @@ import { Skeleton } from "@/components/ui/skeleton"
 const PROFILE = "https://github.com/agustindevelops"
 const CONTRIBUTIONS =
   "https://github-contributions-api.jogruber.de/v4/agustindevelops?y=last"
-
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-]
 
 const levelClass = [
   "bg-lilac/70",
@@ -61,7 +47,7 @@ function groupWeeks(days: Contribution[]) {
 function monthLabel(week: Array<Contribution | null>) {
   const start = week.find((day) => day?.date.endsWith("-01"))
   if (!start) return ""
-  return months[Number(start.date.slice(5, 7)) - 1]
+  return format(parseISO(start.date), "MMM")
 }
 
 async function fetchContributions() {

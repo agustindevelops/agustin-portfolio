@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { GithubContributions } from "@/components/github-contributions"
 import { Link } from "@/components/ui/link"
 import { Skeleton } from "@/components/ui/skeleton"
 
@@ -211,6 +212,11 @@ function App() {
               height={400}
               className="mx-auto aspect-square w-full max-w-72 rounded-xl object-cover ring-1 ring-border sm:max-w-sm"
             />
+          </div>
+          <div className="relative mx-auto max-w-5xl px-4 pb-2 sm:px-6">
+            <div className="rounded-xl bg-soft p-4 ring-1 ring-border sm:p-5">
+              <GithubContributions />
+            </div>
           </div>
           <div className="relative mx-auto grid max-w-5xl gap-6 border-t border-border px-4 py-8 sm:grid-cols-3 sm:gap-8 sm:px-6">
             {stats.map((stat) => (

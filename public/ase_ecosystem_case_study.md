@@ -27,6 +27,16 @@ The public site presents intimate celebrations, wedding and event services, port
 
 The site is built with Next.js, React, TypeScript, Tailwind CSS, and Contentful, with media handled through an S3-compatible store.
 
+![Homepage hero with Intimate Celebrations and Weddings and Events](https://raw.githubusercontent.com/agustindevelops/aniah-social-events/master/docs/screenshots/home.png)
+
+![Schedule page: choose a package or book a consultation](https://raw.githubusercontent.com/agustindevelops/aniah-social-events/master/docs/screenshots/schedule.png)
+
+![Intimate Celebrations catalog with The Forest Fantasy](https://raw.githubusercontent.com/agustindevelops/aniah-social-events/master/docs/screenshots/catalog.png)
+
+![The Forest Fantasy package page with gallery and what's included](https://raw.githubusercontent.com/agustindevelops/aniah-social-events/master/docs/screenshots/package.png)
+
+![Booking form for The Forest Fantasy with quote sidebar](https://raw.githubusercontent.com/agustindevelops/aniah-social-events/master/docs/screenshots/booking.png)
+
 ### 2. ASE inventory and booking system
 
 **Repository:** [agustindevelops/ase-wms-web](https://github.com/agustindevelops/ase-wms-web)
@@ -45,6 +55,16 @@ Items carry photos, labels, and QR identification, and they sit in a hierarchy o
 
 The operations app is built with Next.js, React, Prisma, PostgreSQL, Firebase, and Cloudflare R2.
 
+![WIS Admin landing with Sign In](https://raw.githubusercontent.com/agustindevelops/ase-wms-web/main/docs/screenshots/landing.png)
+
+![WIS Admin sign-in form](https://raw.githubusercontent.com/agustindevelops/ase-wms-web/main/docs/screenshots/signin.png)
+
+![Admin dashboard with inventory totals and shortcuts](https://raw.githubusercontent.com/agustindevelops/ase-wms-web/main/docs/screenshots/dashboard.png)
+
+![Inventory list with category filters](https://raw.githubusercontent.com/agustindevelops/ase-wms-web/main/docs/screenshots/inventory.png)
+
+![Packages list with The Forest Fantasy](https://raw.githubusercontent.com/agustindevelops/ase-wms-web/main/docs/screenshots/packages.png)
+
 ### 3. ASE mobile companion
 
 **Repository:** [agustindevelops/ase-wms-app](https://github.com/agustindevelops/ase-wms-app)
@@ -59,6 +79,16 @@ An item can be identified and updated in context, while the team is standing wit
 - Check item and location details while collecting equipment.
 - Work through pickup and return tasks for an event.
 - Keep operational status aligned with the central system.
+
+![WIS login screen](/images/ase-wms-app/login.png)
+
+![Home dashboard with inventory totals for Lemon Tree](/images/ase-wms-app/home.png)
+
+![Catalog menu: create, edit, label, place, move, remove](/images/ase-wms-app/catalog.png)
+
+![Lemon Tree warehouse tree with Garage zone](/images/ase-wms-app/warehouse.png)
+
+![Pickup tab with no orders scheduled for today](/images/ase-wms-app/pickup.png)
 
 ## How the products work together
 

@@ -6,6 +6,14 @@
   overflow-wrap: anywhere;
 }
 
+.app-markdown img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-block: 1.5rem;
+  border-radius: 0.75rem;
+}
+
 /* Zoom controls sit in the header row.
    Remove the 70vh cap so a diagram that fits the column keeps a readable scale. */
 .app-markdown [data-streamdown="mermaid-block"] > .overflow-hidden,

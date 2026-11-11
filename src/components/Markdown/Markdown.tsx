@@ -42,15 +42,19 @@ function ImageGrid({ images }: { images: MarkdownImage[] }) {
       style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
     >
       {images.map((image) => (
-        <li
-          key={`${image.src}-${image.alt}`}
-          className="flex h-20 items-center justify-center overflow-hidden rounded-md bg-soft ring-1 ring-border sm:h-24"
-        >
-          <img
-            src={image.src}
-            alt={image.alt}
-            className="max-h-full max-w-full object-contain object-top"
-          />
+        <li key={`${image.src}-${image.alt}`}>
+          <a
+            href={image.src}
+            target="_blank"
+            rel="noreferrer"
+            className="flex h-30 w-full items-center justify-center overflow-hidden rounded-md bg-soft ring-1 ring-border transition-opacity hover:opacity-80 sm:h-36"
+          >
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="max-h-full max-w-full object-contain object-top"
+            />
+          </a>
         </li>
       ))}
     </ul>

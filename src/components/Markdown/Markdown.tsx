@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react"
+import { X } from "lucide-react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Streamdown } from "streamdown"
 
 import { cn } from "@/lib/utils"
@@ -35,29 +36,66 @@ type MarkdownProps = {
 
 function ImageGrid({ images }: { images: MarkdownImage[] }) {
   const columns = Math.ceil(images.length / 2)
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const [active, setActive] = useState<MarkdownImage | null>(null)
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (active && !dialog.open) dialog.showModal()
+    if (!active && dialog.open) dialog.close()
+  }, [active])
 
   return (
-    <ul
-      className="grid gap-2"
-      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
-    >
-      {images.map((image) => (
-        <li key={`${image.src}-${image.alt}`}>
-          <a
-            href={image.src}
-            target="_blank"
-            rel="noreferrer"
-            className="flex h-30 w-full items-center justify-center overflow-hidden rounded-md bg-soft ring-1 ring-border transition-opacity hover:opacity-80 sm:h-36"
-          >
+    <>
+      <ul
+        className="grid gap-2"
+        style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+      >
+        {images.map((image) => (
+          <li key={`${image.src}-${image.alt}`}>
+            <button
+              type="button"
+              onClick={() => setActive(image)}
+              className="flex h-30 w-full cursor-pointer items-center justify-center overflow-hidden rounded-md bg-soft ring-1 ring-border transition-opacity hover:opacity-80 sm:h-36"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="max-h-full max-w-full object-contain object-top"
+              />
+            </button>
+          </li>
+        ))}
+      </ul>
+      <dialog
+        ref={dialogRef}
+        aria-label={active?.alt || "Screenshot"}
+        className="fixed inset-0 m-0 h-dvh max-h-none w-dvw max-w-none items-center justify-center border-0 bg-neutral-500/50 p-6 open:flex"
+        onClose={() => setActive(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close()
+        }}
+      >
+        {active ? (
+          <div className="flex max-h-full max-w-full flex-col items-end gap-2">
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => dialogRef.current?.close()}
+              className="text-neutral-900"
+            >
+              <X className="size-7" strokeWidth={2.25} />
+            </button>
             <img
-              src={image.src}
-              alt={image.alt}
-              className="max-h-full max-w-full object-contain object-top"
+              src={active.src}
+              alt={active.alt}
+              className="max-h-[calc(100dvh-6rem)] max-w-full object-contain"
             />
-          </a>
-        </li>
-      ))}
-    </ul>
+          </div>
+        ) : null}
+      </dialog>
+    </>
   )
 }
 

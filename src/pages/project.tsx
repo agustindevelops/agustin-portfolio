@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 
-import { Markdown } from "@/components/markdown"
+import { Markdown } from "@/components/Markdown"
 import { Link } from "@/components/ui/link"
 import { projects } from "@/data"
 import { usePublicMarkdown } from "@/lib/use-public-markdown"

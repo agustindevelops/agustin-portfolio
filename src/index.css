@@ -169,3 +169,11 @@ html {
     @apply font-sans;
   }
 }
+
+/* Streamdown caps diagrams at 70vh, which shrinks a tall flowchart until
+   the labels are unreadable. Let the diagram use its natural height. */
+.app-markdown [data-streamdown="mermaid-block"] > .overflow-hidden,
+.app-markdown [data-streamdown="mermaid"],
+.app-markdown [data-streamdown="mermaid"] > .relative {
+  max-height: none;
+}

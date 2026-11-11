@@ -6,9 +6,12 @@
   overflow-wrap: anywhere;
 }
 
-/* Zoom controls sit on top of short diagrams. Park them in the header row. */
+/* Zoom controls sit in the header row.
+   Remove the 70vh cap so a diagram that fits the column keeps a readable scale. */
 .app-markdown [data-streamdown="mermaid-block"] > .overflow-hidden,
+.app-markdown [data-streamdown="mermaid"],
 .app-markdown [data-streamdown="mermaid"] > .relative {
+  max-height: none;
   overflow: visible;
 }
 

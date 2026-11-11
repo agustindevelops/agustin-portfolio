@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react"
 import { Menu, X } from "lucide-react"
+import { Route, Routes, useLocation } from "react-router"
 
 import portrait from "@/assets/agustin-portrait.jpg"
 import { Badge } from "@/components/ui/badge"
@@ -22,13 +23,14 @@ import {
   skillGroups,
   stats,
 } from "@/data"
+import { ProjectPage } from "@/pages/project"
 
 const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#contact", label: "Contact" },
 ] as const
 
 function Section({
@@ -85,7 +87,7 @@ function Header() {
     <header className="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
         <Link
-          href="#top"
+          href="/#top"
           onClick={close}
           className="font-heading text-lg font-bold text-brand hover:text-brand"
         >
@@ -97,7 +99,7 @@ function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="#education" variant="default">
+          <Link href="/#education" variant="default">
             Education
           </Link>
         </nav>
@@ -132,7 +134,7 @@ function Header() {
               </Link>
             ))}
             <Link
-              href="#education"
+              href="/#education"
               variant="default"
               size="lg"
               onClick={close}
@@ -147,12 +149,25 @@ function Header() {
   )
 }
 
-function App() {
-  return (
-    <div id="top" className="min-h-screen overflow-x-clip bg-background text-foreground">
-      <Header />
+function ScrollToLocation() {
+  const { pathname, hash } = useLocation()
 
-      <main>
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+
+    const id = hash.slice(1)
+    document.getElementById(id)?.scrollIntoView()
+  }, [pathname, hash])
+
+  return null
+}
+
+function Home() {
+  return (
+    <main>
         <section className="relative overflow-hidden bg-background">
           <div
             aria-hidden
@@ -171,7 +186,7 @@ function App() {
               </p>
               <p className="mt-5 max-w-xl text-lg">{profile.intro}</p>
               <Link
-                href="#projects"
+                href="/#projects"
                 variant="default"
                 size="lg"
                 className="mt-8 w-full sm:w-fit"
@@ -221,7 +236,9 @@ function App() {
                   <CardDescription>{job.dates}</CardDescription>
                   <CardTitle>{job.role}</CardTitle>
                   <CardDescription>
-                    {job.company} — {job.location}
+                    <Link href={job.url}>{job.company}</Link>
+                    {" — "}
+                    {job.location}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -260,9 +277,16 @@ function App() {
         <Section id="projects" title="Projects">
           <div className="grid gap-8 lg:grid-cols-3">
             {projects.map((project) => (
-              <Card key={project.name} className="h-full">
+              <Card key={project.slug} className="h-full">
                 <CardHeader>
-                  <CardTitle>{project.name}</CardTitle>
+                  <CardTitle>
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="text-base text-foreground hover:text-brand"
+                    >
+                      {project.name}
+                    </Link>
+                  </CardTitle>
                   <CardDescription>{project.summary}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col gap-4">
@@ -283,10 +307,9 @@ function App() {
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter>
-                  <Link href={project.url} target="_blank" rel="noreferrer">
-                    Visit site
-                  </Link>
+                <CardFooter className="justify-between gap-3">
+                  <Link href={`/projects/${project.slug}`}>View project</Link>
+                  <Link href={project.url}>Visit site</Link>
                 </CardFooter>
               </Card>
             ))}
@@ -329,7 +352,19 @@ function App() {
             ))}
           </div>
         </Section>
-      </main>
+    </main>
+  )
+}
+
+function App() {
+  return (
+    <div id="top" className="min-h-screen overflow-x-clip bg-background text-foreground">
+      <ScrollToLocation />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects/:slug" element={<ProjectPage />} />
+      </Routes>
     </div>
   )
 }

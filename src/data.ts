@@ -30,6 +30,7 @@ export const experience = [
   {
     role: "Full Stack Senior Software Developer",
     company: "BIDFTA",
+    url: "https://www.bidfta.com/",
     location: "Cincinnati, OH",
     dates: "May 2022 – May 2026",
     highlights: [
@@ -44,6 +45,7 @@ export const experience = [
   {
     role: "Full Stack Web Developer",
     company: "Texas A&M Health Science Center, Rural and Community Health Institute",
+    url: "https://architexas.org/",
     location: "College Station, TX",
     dates: "May 2020 – June 2022",
     highlights: [
@@ -59,6 +61,7 @@ export const experience = [
   {
     role: "Web Developer",
     company: "Marketing for Change",
+    url: "https://marketingforchange.com/",
     location: "Alexandria, VA",
     dates: "December 2021 – May 2022",
     highlights: [
@@ -131,6 +134,7 @@ export const skillGroups = [
 export const projects = [
   {
     name: "Project Hunter",
+    slug: "project-hunter",
     url: "https://job-hunter-mu-inky.vercel.app/",
     summary:
       "A local-first job application assistant that stores reusable career information in the browser and uses AI to create tailored resumes and cover letters.",
@@ -154,6 +158,7 @@ export const projects = [
   },
   {
     name: "Aniah Social Events",
+    slug: "aniah-social-events",
     url: "https://aniahsocialevents.com",
     summary:
       "A custom marketing website for an event planning company, with a headless CMS so the owner can manage content independently.",
@@ -167,6 +172,7 @@ export const projects = [
   },
   {
     name: "M.E. Picnics",
+    slug: "me-picnics",
     url: "https://mepicnics.com",
     summary:
       "A full-stack booking website for a picnic experience company, combining marketing, scheduling, payments, and calendar management.",

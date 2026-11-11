@@ -186,6 +186,97 @@ export const projects = [
   },
 ]
 
+export const markdownDemo = {
+  id: "markdown-demo",
+  markdown: `# Markdown component preview
+
+This is a reusable **Markdown renderer**. It is not tied to blogs.
+
+## Features
+
+- [x] Headings, lists, and tables
+- [x] Code highlighting
+- [ ] A task that is still open
+- Nested lists:
+  1. First ordered item
+     - Nested bullet
+     - Another nested bullet
+  2. Second ordered item
+
+### Smaller heading
+
+#### Level four
+
+##### Level five
+
+###### Level six
+
+A paragraph with *emphasis*, ~~strikethrough~~, and \`inline code\`.
+
+---
+
+Visit [Streamdown](https://streamdown.ai/docs/getting-started), or the autolink https://streamdown.ai.
+
+A non-HTTP link should stay inert: [blocked](javascript:alert(1)).
+
+ThisLongUnbrokenTokenShouldWrapInsideTheContentColumnInsteadOfStretchingThePageHorizontally-abcdefghijklmnopqrstuvwxyz0123456789
+
+![Portfolio mark](/icons.svg)
+
+> This content comes from a local fixture.
+
+| Capability | Source |
+| --- | --- |
+| Rendering | Streamdown |
+| Syntax | Shiki plugin |
+| Diagrams | Mermaid plugin |
+| Notes | A wide cell with a long value that should scroll inside the table rather than the page |
+
+\`\`\`tsx
+export function Greeting({ name }: { name: string }) {
+  return <h2>Hello, {name}</h2>;
+}
+\`\`\`
+
+\`\`\`ts
+export const answer: number = 42
+\`\`\`
+
+\`\`\`json
+{ "ok": true, "source": "fixture" }
+\`\`\`
+
+\`\`\`bash
+npm run dev
+\`\`\`
+
+\`\`\`not-a-real-language
+echo "fallback highlighting"
+\`\`\`
+
+\`\`\`mermaid
+flowchart LR
+  A[Markdown string] --> B[Markdown component]
+  B --> C[Styled output]
+\`\`\`
+
+\`\`\`mermaid
+sequenceDiagram
+  participant Page
+  participant Markdown
+  participant Streamdown
+  Page->>Markdown: content string
+  Markdown->>Streamdown: static render
+  Streamdown-->>Page: styled output
+\`\`\`
+
+\`\`\`mermaid
+flowchart LR
+  this is not valid mermaid [[[
+\`\`\`
+`,
+}
+
 export const education = [
   {
     school: "Texas A&M University",

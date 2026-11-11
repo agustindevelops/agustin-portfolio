@@ -23,6 +23,7 @@ import {
   skillGroups,
   stats,
 } from "@/data"
+import { MarkdownPreviewPage } from "@/pages/markdown-preview"
 import { ProjectPage } from "@/pages/project"
 
 const navItems = [
@@ -364,6 +365,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects/:slug" element={<ProjectPage />} />
+        <Route path="/markdown-preview" element={<MarkdownPreviewPage />} />
       </Routes>
     </div>
   )

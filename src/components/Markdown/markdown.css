@@ -1,0 +1,21 @@
+.app-markdown {
+  min-width: 0;
+}
+
+.app-markdown :where(p, li, blockquote, td, th, h1, h2, h3, h4, h5, h6) {
+  overflow-wrap: anywhere;
+}
+
+/* Zoom controls sit on top of short diagrams. Park them in the header row. */
+.app-markdown [data-streamdown="mermaid-block"] > .overflow-hidden,
+.app-markdown [data-streamdown="mermaid"] > .relative {
+  overflow: visible;
+}
+
+.app-markdown [data-streamdown="mermaid"] > .relative > .absolute {
+  top: -2.65rem;
+  right: 6.75rem;
+  bottom: auto;
+  left: auto;
+  flex-direction: row;
+}

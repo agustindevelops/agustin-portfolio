@@ -14,7 +14,14 @@ import {
 } from "@/components/ui/card"
 import { GithubContributions } from "@/components/GithubContributions"
 import { Link } from "@/components/ui/link"
-import { Skeleton } from "@/components/ui/skeleton"
+import {
+  education,
+  experience,
+  profile,
+  projects,
+  skillGroups,
+  stats,
+} from "@/data"
 
 const navItems = [
   { href: "#about", label: "About" },
@@ -22,28 +29,6 @@ const navItems = [
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
-] as const
-
-const stats = [
-  {
-    value: "1.2M",
-    label: "Registered accounts supported at BIDFTA",
-  },
-  {
-    value: "1.2M",
-    label: "Accounts migrated with zero downtime",
-  },
-  {
-    value: "100M+",
-    label: "Products handled by an AI categorization pipeline",
-  },
-] as const
-
-const skillGroups = [
-  "Frontend",
-  "Backend",
-  "Infrastructure",
-  "Workflows",
 ] as const
 
 function Section({
@@ -112,8 +97,8 @@ function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="#resume" variant="default">
-            Resume
+          <Link href="#education" variant="default">
+            Education
           </Link>
         </nav>
         <Button
@@ -147,13 +132,13 @@ function Header() {
               </Link>
             ))}
             <Link
-              href="#resume"
+              href="#education"
               variant="default"
               size="lg"
               onClick={close}
               className="mt-2 w-full"
             >
-              Resume
+              Education
             </Link>
           </div>
         </nav>
@@ -176,26 +161,15 @@ function App() {
           <div className="relative mx-auto grid max-w-5xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.85fr)] lg:gap-12 lg:py-28">
             <div className="min-w-0">
               <h1 className="text-balance text-3xl sm:text-5xl">
-                Agustin Manriquez Cruz
+                {profile.name}
               </h1>
               <Badge variant="mint" className="mt-4 h-7 px-3 text-sm">
-                Open to opportunities
+                {profile.availability}
               </Badge>
               <p className="mt-6 font-heading text-xl font-bold text-brand sm:text-2xl">
-                Senior Full-Stack Software Engineer
+                {profile.title}
               </p>
-              <p className="mt-5 max-w-xl text-lg">
-                I solve complex engineering problems and build software that
-                makes people's lives easier.
-              </p>
-              <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-                I'm a full-stack engineer with experience building and
-                modernizing production applications across e-commerce,
-                healthcare, and business operations. I've led development of a
-                high-traffic auction marketplace, built secure internal tools,
-                and delivered systems spanning frontend development, backend
-                services, cloud infrastructure, and AI integrations.
-              </p>
+              <p className="mt-5 max-w-xl text-lg">{profile.intro}</p>
               <Link
                 href="#projects"
                 variant="default"
@@ -207,7 +181,7 @@ function App() {
             </div>
             <img
               src={portrait}
-              alt="Agustin Manriquez Cruz"
+              alt={profile.name}
               width={400}
               height={400}
               className="mx-auto aspect-square w-full max-w-72 rounded-xl object-cover ring-1 ring-border sm:max-w-sm"
@@ -233,34 +207,29 @@ function App() {
         </section>
 
         <Section id="about" title="About" soft>
-          <div className="grid items-center gap-10 md:grid-cols-[200px_1fr]">
-            <Skeleton className="mx-auto aspect-square w-full max-w-48 rounded-xl md:mx-0" />
-            <div className="space-y-3">
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-11/12" />
-              <Skeleton className="h-4 w-4/5" />
-              <Skeleton className="h-4 w-2/3" />
-            </div>
-          </div>
+          <p className="max-w-3xl leading-relaxed text-muted-foreground">
+            {profile.summary}
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground">{profile.location}</p>
         </Section>
 
         <Section id="experience" title="Experience">
           <div className="space-y-6">
-            {Array.from({ length: 3 }, (_, index) => (
-              <Card key={index}>
+            {experience.map((job) => (
+              <Card key={`${job.company}-${job.dates}`}>
                 <CardHeader>
-                  <Skeleton className="h-3 w-24" />
-                  <CardTitle>
-                    <Skeleton className="h-5 w-48" />
-                  </CardTitle>
+                  <CardDescription>{job.dates}</CardDescription>
+                  <CardTitle>{job.role}</CardTitle>
                   <CardDescription>
-                    <Skeleton className="h-3 w-32" />
+                    {job.company} — {job.location}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">
-                  <Skeleton className="h-3 w-full" />
-                  <Skeleton className="h-3 w-5/6" />
+                <CardContent>
+                  <ul className="list-disc space-y-2 pl-4 leading-relaxed text-muted-foreground">
+                    {job.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             ))}
@@ -270,16 +239,16 @@ function App() {
         <Section id="skills" title="Skills" soft>
           <div className="grid gap-10 sm:grid-cols-2">
             {skillGroups.map((group) => (
-              <div key={group} className="space-y-4">
-                <h3 className="text-lg">{group}</h3>
+              <div key={group.name} className="space-y-4">
+                <h3 className="text-lg">{group.name}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["w-16", "w-20", "w-14", "w-24"].map((width, index) => (
+                  {group.items.map((item) => (
                     <Badge
-                      key={index}
+                      key={item}
                       variant="outline"
                       className="h-7 border-lilac px-3 hover:bg-mint/60"
                     >
-                      <Skeleton className={`h-2.5 ${width}`} />
+                      {item}
                     </Badge>
                   ))}
                 </div>
@@ -290,32 +259,33 @@ function App() {
 
         <Section id="projects" title="Projects">
           <div className="grid gap-8 lg:grid-cols-3">
-            {Array.from({ length: 3 }, (_, index) => (
-              <Card key={index} className="h-full">
-                <Skeleton className="aspect-video w-full rounded-none" />
+            {projects.map((project) => (
+              <Card key={project.name} className="h-full">
                 <CardHeader>
-                  <CardTitle>
-                    <Skeleton className="h-5 w-3/4" />
-                  </CardTitle>
-                  <CardDescription className="space-y-2">
-                    <Skeleton className="h-3 w-full" />
-                    <Skeleton className="h-3 w-5/6" />
-                  </CardDescription>
+                  <CardTitle>{project.name}</CardTitle>
+                  <CardDescription>{project.summary}</CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-wrap gap-2">
-                  {["w-12", "w-16", "w-10"].map((width, tag) => (
-                    <Badge
-                      key={tag}
-                      variant="mint"
-                      className="h-6 px-2 font-mono"
-                    >
-                      <Skeleton className={`h-2.5 ${width} bg-foreground/15`} />
-                    </Badge>
-                  ))}
+                <CardContent className="flex flex-1 flex-col gap-4">
+                  <ul className="list-disc space-y-2 pl-4 leading-relaxed text-muted-foreground">
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((item) => (
+                      <Badge
+                        key={item}
+                        variant="mint"
+                        className="h-6 px-2 font-mono"
+                      >
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
                 </CardContent>
-                <CardFooter className="bg-transparent">
-                  <Link href="#projects" aria-label={`Project ${index + 1}`}>
-                    <Skeleton className="h-3 w-16" />
+                <CardFooter>
+                  <Link href={project.url} target="_blank" rel="noreferrer">
+                    Visit site
                   </Link>
                 </CardFooter>
               </Card>
@@ -324,23 +294,39 @@ function App() {
         </Section>
 
         <Section id="contact" title="Contact" soft>
-          <div className="max-w-xl space-y-3">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-4/5" />
+          <div className="max-w-xl space-y-2 leading-relaxed">
+            <p>{profile.location}</p>
+            <p>
+              <Link href={`tel:+1${profile.phone.replace(/\D/g, "")}`}>
+                {profile.phone}
+              </Link>
+            </p>
+            <p>
+              <Link href={`mailto:${profile.email}`}>{profile.email}</Link>
+            </p>
           </div>
-          <Button
-            type="button"
+          <Link
+            href={`mailto:${profile.email}`}
+            variant="default"
             size="lg"
             className="mt-8 h-12 w-full px-8 text-base sm:w-fit"
           >
             Get in Touch
-          </Button>
+          </Link>
         </Section>
 
-        <Section id="resume" title="Resume">
-          <div className="max-w-xl space-y-3">
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-2/3" />
+        <Section id="education" title="Education">
+          <div className="space-y-6">
+            {education.map((item) => (
+              <div key={item.school}>
+                <h3 className="text-lg">{item.school}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {item.location}
+                </p>
+                <p className="mt-1">{item.credential}</p>
+                <p className="text-sm text-muted-foreground">{item.detail}</p>
+              </div>
+            ))}
           </div>
         </Section>
       </main>

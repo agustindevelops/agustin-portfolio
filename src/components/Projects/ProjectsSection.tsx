@@ -27,7 +27,7 @@ function ProjectsSection({
       id={id}
       className={cn("scroll-mt-24 bg-background py-16 md:py-24", className)}
     >
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-3 h-1 w-10 rounded-full bg-brand" />
         {heading ? <h2 className="text-2xl sm:text-3xl">{heading}</h2> : null}
         {intro ? (

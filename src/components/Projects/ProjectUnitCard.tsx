@@ -82,8 +82,8 @@ function ProjectUnitCard({ unit, icon, className }: ProjectUnitCardProps) {
         </CardContent>
       ) : null}
       {actions.length > 0 ? (
-        <CardFooter className="mt-auto flex-wrap justify-start gap-3">
-          <ProjectActions actions={actions} />
+        <CardFooter className="mt-auto">
+          <ProjectActions actions={actions} className="w-full justify-between" />
         </CardFooter>
       ) : null}
     </Card>

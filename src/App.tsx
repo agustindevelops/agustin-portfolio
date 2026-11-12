@@ -51,7 +51,7 @@ function Section({
       id={id}
       className={`scroll-mt-24 py-16 md:py-24 ${soft ? "bg-soft" : "bg-background"}`}
     >
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-3 h-1 w-10 rounded-full bg-brand" />
         <h2 className="text-2xl sm:text-3xl">{title}</h2>
         <div className="mt-8 md:mt-12">{children}</div>
@@ -87,7 +87,7 @@ function Header() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
         <Link
           href="/#top"
           onClick={close}
@@ -124,7 +124,7 @@ function Header() {
           aria-label="Mobile"
           className="border-t border-border px-4 py-3 sm:px-6 lg:hidden"
         >
-          <div className="mx-auto flex max-w-5xl flex-col gap-1">
+          <div className="mx-auto flex max-w-7xl flex-col gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -175,7 +175,7 @@ function Home() {
             aria-hidden
             className="pointer-events-none absolute -right-16 top-16 size-72 rounded-full bg-lilac/60"
           />
-          <div className="relative mx-auto grid max-w-5xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.85fr)] lg:gap-12 lg:py-28">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.85fr)] lg:gap-12 lg:py-28">
             <div className="min-w-0">
               <h1 className="text-balance text-3xl sm:text-5xl">
                 {profile.name}
@@ -204,12 +204,12 @@ function Home() {
               className="mx-auto aspect-square w-full max-w-72 rounded-xl object-cover ring-1 ring-border sm:max-w-sm"
             />
           </div>
-          <div className="relative mx-auto max-w-5xl px-4 pb-2 sm:px-6">
+          <div className="relative mx-auto max-w-7xl px-4 pb-2 sm:px-6">
             <div className="rounded-xl bg-soft p-4 ring-1 ring-border sm:p-5">
               <GithubContributions />
             </div>
           </div>
-          <div className="relative mx-auto grid max-w-5xl gap-6 border-t border-border px-4 py-8 sm:grid-cols-3 sm:gap-8 sm:px-6">
+          <div className="relative mx-auto grid max-w-7xl gap-6 border-t border-border px-4 py-8 sm:grid-cols-3 sm:gap-8 sm:px-6">
             {stats.map((stat) => (
               <div key={stat.label}>
                 <p className="font-heading text-3xl font-bold text-brand sm:text-4xl">

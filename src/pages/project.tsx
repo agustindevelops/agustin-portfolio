@@ -24,7 +24,7 @@ function ProjectPage() {
     : []
 
   return (
-    <main className="mx-auto w-full max-w-4xl px-4 py-16 sm:px-6 md:py-24">
+    <main className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24">
       <Link href="/#projects">All projects</Link>
       {project ? (
         <>

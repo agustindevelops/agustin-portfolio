@@ -1,3 +1,4 @@
+import { aseProject } from "@/ase-project-data"
 import type { PortfolioProject } from "@/components/Projects/types"
 
 export const profile = {
@@ -133,7 +134,7 @@ export const skillGroups = [
   },
 ]
 
-export const projects = [
+export const projects: PortfolioProject[] = [
   {
     id: "project-hunter",
     title: "Project Hunter",
@@ -186,51 +187,7 @@ export const projects = [
       },
     ],
   },
-  {
-    id: "aniah-social-events",
-    title: "Aniah Social Events",
-    description:
-      "A custom marketing website for an event planning company, with a headless CMS so the owner can manage content independently.",
-    units: [
-      {
-        id: "aniah-social-events-site",
-        title: "Aniah Social Events",
-        features: [
-          {
-            id: "aniah-responsive-site",
-            text: "Built a responsive business website using Next.js and integrated Calendly for consultation scheduling.",
-          },
-          {
-            id: "aniah-cms",
-            text: "Implemented Contentful so the client can manage services, galleries, blog posts, FAQs, and website copy without developer support.",
-          },
-          {
-            id: "aniah-motion",
-            text: "Developed reusable UI components and interactive experiences with Framer Motion, including testimonial animations, galleries, and page transitions.",
-          },
-          {
-            id: "aniah-seo",
-            text: "Created SEO-friendly pages for local wedding and event planning services in Austin.",
-          },
-        ],
-        tags: ["Next.js", "Contentful", "Calendly", "Framer Motion"],
-        actions: [
-          {
-            id: "aniah-social-events-visit",
-            label: "Visit site",
-            href: "https://aniahsocialevents.com",
-          },
-        ],
-      },
-    ],
-    actions: [
-      {
-        id: "aniah-social-events-view",
-        label: "View project",
-        href: "/projects/aniah-social-events",
-      },
-    ],
-  },
+  aseProject,
   {
     id: "me-picnics",
     title: "M.E. Picnics",
@@ -276,7 +233,7 @@ export const projects = [
       },
     ],
   },
-] satisfies PortfolioProject[]
+]
 
 export const markdownDemo = {
   id: "markdown-demo",

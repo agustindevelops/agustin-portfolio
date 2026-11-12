@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react"
 import { Menu, X } from "lucide-react"
 import { Route, Routes, useLocation } from "react-router"
 
+import { renderAseUnitIcon } from "@/assets/ase/ase-icon-registry"
 import portrait from "@/assets/agustin-portrait.jpg"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -275,7 +276,12 @@ function Home() {
           </div>
         </Section>
 
-        <ProjectsSection id="projects" heading="Projects" projects={projects} />
+        <ProjectsSection
+          id="projects"
+          heading="Projects"
+          projects={projects}
+          renderUnitIcon={renderAseUnitIcon}
+        />
 
         <Section id="contact" title="Contact" soft>
           <div className="max-w-xl space-y-2 leading-relaxed">

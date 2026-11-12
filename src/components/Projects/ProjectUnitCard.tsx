@@ -38,7 +38,7 @@ function ProjectUnitCard({ unit, icon, className }: ProjectUnitCardProps) {
       <CardHeader>
         <div className="flex items-start gap-3">
           {icon ? (
-            <span aria-hidden className="mt-0.5 inline-flex size-10 shrink-0 items-center justify-center">
+            <span aria-hidden className="mt-0.5 inline-flex size-12 shrink-0 items-center justify-center text-brand">
               {icon}
             </span>
           ) : null}
@@ -67,9 +67,13 @@ function ProjectUnitCard({ unit, icon, className }: ProjectUnitCardProps) {
           {unit.media ? <ProjectMedia media={unit.media} /> : null}
           {features.length > 0 ? <FeatureList features={features} /> : null}
           {tags.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {tags.map((tag) => (
-                <Badge key={tag} variant="mint" className="h-6 px-2 font-mono">
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="h-auto min-h-6 whitespace-normal border-border bg-muted px-2.5 py-0.5"
+                >
                   {tag}
                 </Badge>
               ))}

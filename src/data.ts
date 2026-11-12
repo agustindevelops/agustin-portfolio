@@ -1,3 +1,5 @@
+import type { PortfolioProject } from "@/components/Projects/types"
+
 export const profile = {
   name: "Agustin Manriquez Cruz",
   title: "Full Stack Web Developer",
@@ -133,58 +135,148 @@ export const skillGroups = [
 
 export const projects = [
   {
-    name: "Project Hunter",
-    slug: "project-hunter",
-    url: "https://job-hunter-mu-inky.vercel.app/",
-    summary:
+    id: "project-hunter",
+    title: "Project Hunter",
+    description:
       "A local-first job application assistant that stores reusable career information in the browser and uses AI to create tailored resumes and cover letters.",
-    highlights: [
-      "Designed a structured master profile that users can reuse across applications without repeatedly entering the same information.",
-      "Used Dexie and IndexedDB to keep personal data on the user’s device instead of maintaining a centralized database.",
-      "Integrated bring-your-own-key AI workflows for tailoring application materials, generating PDFs, and tracking job applications.",
+    units: [
+      {
+        id: "project-hunter-app",
+        title: "Project Hunter",
+        features: [
+          {
+            id: "project-hunter-master-profile",
+            text: "Designed a structured master profile that users can reuse across applications without repeatedly entering the same information.",
+          },
+          {
+            id: "project-hunter-local-storage",
+            text: "Used Dexie and IndexedDB to keep personal data on the user’s device instead of maintaining a centralized database.",
+          },
+          {
+            id: "project-hunter-ai-workflows",
+            text: "Integrated bring-your-own-key AI workflows for tailoring application materials, generating PDFs, and tracking job applications.",
+          },
+        ],
+        tags: [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "Dexie",
+          "IndexedDB",
+          "Vercel AI SDK",
+          "React PDF",
+          "React Hook Form",
+          "Vercel",
+        ],
+        actions: [
+          {
+            id: "project-hunter-visit",
+            label: "Visit site",
+            href: "https://job-hunter-mu-inky.vercel.app/",
+          },
+        ],
+      },
     ],
-    stack: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Dexie",
-      "IndexedDB",
-      "Vercel AI SDK",
-      "React PDF",
-      "React Hook Form",
-      "Vercel",
+    actions: [
+      {
+        id: "project-hunter-view",
+        label: "View project",
+        href: "/projects/project-hunter",
+      },
     ],
   },
   {
-    name: "Aniah Social Events",
-    slug: "aniah-social-events",
-    url: "https://aniahsocialevents.com",
-    summary:
+    id: "aniah-social-events",
+    title: "Aniah Social Events",
+    description:
       "A custom marketing website for an event planning company, with a headless CMS so the owner can manage content independently.",
-    highlights: [
-      "Built a responsive business website using Next.js and integrated Calendly for consultation scheduling.",
-      "Implemented Contentful so the client can manage services, galleries, blog posts, FAQs, and website copy without developer support.",
-      "Developed reusable UI components and interactive experiences with Framer Motion, including testimonial animations, galleries, and page transitions.",
-      "Created SEO-friendly pages for local wedding and event planning services in Austin.",
+    units: [
+      {
+        id: "aniah-social-events-site",
+        title: "Aniah Social Events",
+        features: [
+          {
+            id: "aniah-responsive-site",
+            text: "Built a responsive business website using Next.js and integrated Calendly for consultation scheduling.",
+          },
+          {
+            id: "aniah-cms",
+            text: "Implemented Contentful so the client can manage services, galleries, blog posts, FAQs, and website copy without developer support.",
+          },
+          {
+            id: "aniah-motion",
+            text: "Developed reusable UI components and interactive experiences with Framer Motion, including testimonial animations, galleries, and page transitions.",
+          },
+          {
+            id: "aniah-seo",
+            text: "Created SEO-friendly pages for local wedding and event planning services in Austin.",
+          },
+        ],
+        tags: ["Next.js", "Contentful", "Calendly", "Framer Motion"],
+        actions: [
+          {
+            id: "aniah-social-events-visit",
+            label: "Visit site",
+            href: "https://aniahsocialevents.com",
+          },
+        ],
+      },
     ],
-    stack: ["Next.js", "Contentful", "Calendly", "Framer Motion"],
+    actions: [
+      {
+        id: "aniah-social-events-view",
+        label: "View project",
+        href: "/projects/aniah-social-events",
+      },
+    ],
   },
   {
-    name: "M.E. Picnics",
-    slug: "me-picnics",
-    url: "https://mepicnics.com",
-    summary:
+    id: "me-picnics",
+    title: "M.E. Picnics",
+    description:
       "A full-stack booking website for a picnic experience company, combining marketing, scheduling, payments, and calendar management.",
-    highlights: [
-      "Built the website using Next.js with service packages configured as Stripe products.",
-      "Integrated Stripe Checkout and connected bookings to the client’s Google Calendar.",
-      "Added Google Analytics and SEO-focused pages for picnic-related searches in San Antonio.",
-      "Deployed and maintained the site on Netlify.",
+    units: [
+      {
+        id: "me-picnics-site",
+        title: "M.E. Picnics",
+        features: [
+          {
+            id: "me-picnics-packages",
+            text: "Built the website using Next.js with service packages configured as Stripe products.",
+          },
+          {
+            id: "me-picnics-checkout",
+            text: "Integrated Stripe Checkout and connected bookings to the client’s Google Calendar.",
+          },
+          {
+            id: "me-picnics-analytics",
+            text: "Added Google Analytics and SEO-focused pages for picnic-related searches in San Antonio.",
+          },
+          {
+            id: "me-picnics-deploy",
+            text: "Deployed and maintained the site on Netlify.",
+          },
+        ],
+        tags: ["Next.js", "Stripe", "Google Calendar", "Google Analytics", "Netlify"],
+        actions: [
+          {
+            id: "me-picnics-visit",
+            label: "Visit site",
+            href: "https://mepicnics.com",
+          },
+        ],
+      },
     ],
-    stack: ["Next.js", "Stripe", "Google Calendar", "Google Analytics", "Netlify"],
+    actions: [
+      {
+        id: "me-picnics-view",
+        label: "View project",
+        href: "/projects/me-picnics",
+      },
+    ],
   },
-]
+] satisfies PortfolioProject[]
 
 export const markdownDemo = {
   id: "markdown-demo",

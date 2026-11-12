@@ -9,11 +9,11 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import { GithubContributions } from "@/components/GithubContributions"
+import { ProjectsSection } from "@/components/Projects"
 import { Link } from "@/components/ui/link"
 import {
   education,
@@ -275,47 +275,7 @@ function Home() {
           </div>
         </Section>
 
-        <Section id="projects" title="Projects">
-          <div className="grid gap-8 lg:grid-cols-3">
-            {projects.map((project) => (
-              <Card key={project.slug} className="h-full">
-                <CardHeader>
-                  <CardTitle>
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="text-base text-foreground hover:text-brand"
-                    >
-                      {project.name}
-                    </Link>
-                  </CardTitle>
-                  <CardDescription>{project.summary}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-1 flex-col gap-4">
-                  <ul className="list-disc space-y-2 pl-4 leading-relaxed text-muted-foreground">
-                    {project.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    {project.stack.map((item) => (
-                      <Badge
-                        key={item}
-                        variant="mint"
-                        className="h-6 px-2 font-mono"
-                      >
-                        {item}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="justify-between gap-3">
-                  <Link href={`/projects/${project.slug}`}>View project</Link>
-                  <Link href={project.url}>Visit site</Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </Section>
+        <ProjectsSection id="projects" heading="Projects" projects={projects} />
 
         <Section id="contact" title="Contact" soft>
           <div className="max-w-xl space-y-2 leading-relaxed">

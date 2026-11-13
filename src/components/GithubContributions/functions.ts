@@ -50,11 +50,21 @@ const contributionTitle = (day: Contribution) => {
 }
 
 const fetchContributions = async () => {
-  const response = await fetch("/api/github-contributions", {
-    cache: "no-store",
-  })
+  if (!githubProfile || !/^[a-zA-Z0-9-]+$/.test(githubProfile)) {
+    throw new Error("Missing GitHub profile")
+  }
+
+  const response = await fetch(
+    `https://github-contributions-api.jogruber.de/v4/${githubProfile}?y=last`,
+    { cache: "no-store" },
+  )
   if (!response.ok) throw new Error("Could not load contributions")
-  return response.json() as Promise<ContributionResponse>
+
+  const data = (await response.json()) as ContributionResponse
+  if (!data.total || !Array.isArray(data.contributions)) {
+    throw new Error("Could not load contributions")
+  }
+  return data
 }
 
 export {

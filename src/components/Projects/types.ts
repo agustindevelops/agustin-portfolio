@@ -34,6 +34,7 @@ export interface ProjectUnit {
   tags?: string[]
   media?: ProjectMedia
   actions?: ProjectAction[]
+  showAllFeatures?: boolean
 }
 
 export interface PortfolioProject {

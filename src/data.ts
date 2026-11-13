@@ -1,4 +1,5 @@
 import { aseProject } from "@/ase-project-data"
+import { laizProject } from "@/laiz-project-data"
 import type { PortfolioProject } from "@/components/Projects/types"
 
 export const profile = {
@@ -188,6 +189,7 @@ export const projects: PortfolioProject[] = [
     ],
   },
   aseProject,
+  laizProject,
   {
     id: "me-picnics",
     title: "M.E. Picnics",

@@ -10,6 +10,7 @@ const visibleLimit = 3
 export interface FeatureListProps {
   features: readonly ProjectFeature[]
   className?: string
+  showAll?: boolean
 }
 
 function FeatureItem({ feature }: { feature: ProjectFeature }) {
@@ -25,10 +26,10 @@ function FeatureItem({ feature }: { feature: ProjectFeature }) {
   )
 }
 
-function FeatureList({ features, className }: FeatureListProps) {
+function FeatureList({ features, className, showAll = false }: FeatureListProps) {
   const [expanded, setExpanded] = useState(false)
   const listId = useId()
-  const canToggle = features.length > visibleLimit
+  const canToggle = !showAll && features.length > visibleLimit
   const shown = expanded || !canToggle ? features : features.slice(0, visibleLimit)
   const peek = !expanded && canToggle ? features[visibleLimit] : undefined
 

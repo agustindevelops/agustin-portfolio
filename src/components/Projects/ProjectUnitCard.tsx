@@ -65,7 +65,9 @@ function ProjectUnitCard({ unit, icon, className }: ProjectUnitCardProps) {
       {hasContent ? (
         <CardContent className="flex flex-1 flex-col gap-4">
           {unit.media ? <ProjectMedia media={unit.media} /> : null}
-          {features.length > 0 ? <FeatureList features={features} /> : null}
+          {features.length > 0 ? (
+            <FeatureList features={features} showAll={unit.showAllFeatures} />
+          ) : null}
           {tags.length > 0 ? (
             <div className="flex flex-wrap gap-1.5">
               {tags.map((tag) => (

@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react"
 import { Route, Routes, useLocation } from "react-router"
 
 import { renderAseUnitIcon } from "@/assets/ase/ase-icon-registry"
+import { renderLaizUnitIcon } from "@/assets/laiz/laiz-icon-registry"
 import portrait from "@/assets/agustin-portrait.jpg"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -14,7 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { GithubContributions } from "@/components/GithubContributions"
-import { ProjectsSection } from "@/components/Projects"
+import { ProjectsSection, type ProjectUnit } from "@/components/Projects"
 import { Link } from "@/components/ui/link"
 import {
   education,
@@ -34,6 +35,10 @@ const navItems = [
   { href: "/#projects", label: "Projects" },
   { href: "/#contact", label: "Contact" },
 ] as const
+
+function renderUnitIcon(unit: ProjectUnit) {
+  return renderAseUnitIcon(unit) ?? renderLaizUnitIcon(unit)
+}
 
 function Section({
   id,
@@ -280,7 +285,7 @@ function Home() {
           id="projects"
           heading="Projects"
           projects={projects}
-          renderUnitIcon={renderAseUnitIcon}
+          renderUnitIcon={renderUnitIcon}
         />
 
         <Section id="contact" title="Contact" soft>

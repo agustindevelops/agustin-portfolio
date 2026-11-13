@@ -137,58 +137,6 @@ export const skillGroups = [
 ]
 
 export const projects: PortfolioProject[] = [
-  {
-    id: "project-hunter",
-    title: "Project Hunter",
-    description:
-      "A local-first job application assistant that stores reusable career information in the browser and uses AI to create tailored resumes and cover letters.",
-    units: [
-      {
-        id: "project-hunter-app",
-        title: "Project Hunter",
-        features: [
-          {
-            id: "project-hunter-master-profile",
-            text: "Designed a structured master profile that users can reuse across applications without repeatedly entering the same information.",
-          },
-          {
-            id: "project-hunter-local-storage",
-            text: "Used Dexie and IndexedDB to keep personal data on the user’s device instead of maintaining a centralized database.",
-          },
-          {
-            id: "project-hunter-ai-workflows",
-            text: "Integrated bring-your-own-key AI workflows for tailoring application materials, generating PDFs, and tracking job applications.",
-          },
-        ],
-        tags: [
-          "Next.js",
-          "React",
-          "TypeScript",
-          "Tailwind CSS",
-          "Dexie",
-          "IndexedDB",
-          "Vercel AI SDK",
-          "React PDF",
-          "React Hook Form",
-          "Vercel",
-        ],
-        actions: [
-          {
-            id: "project-hunter-visit",
-            label: "Visit site",
-            href: "https://job-hunter-mu-inky.vercel.app/",
-          },
-        ],
-      },
-    ],
-    actions: [
-      {
-        id: "project-hunter-view",
-        label: "View project",
-        href: "/projects/project-hunter",
-      },
-    ],
-  },
   aseProject,
   laizProject,
   {
@@ -219,20 +167,13 @@ export const projects: PortfolioProject[] = [
           },
         ],
         tags: ["Next.js", "Stripe", "Google Calendar", "Google Analytics", "Netlify"],
-        actions: [
-          {
-            id: "me-picnics-visit",
-            label: "Visit site",
-            href: "https://mepicnics.com",
-          },
-        ],
       },
     ],
     actions: [
       {
-        id: "me-picnics-view",
-        label: "View project",
-        href: "/projects/me-picnics",
+        id: "me-picnics-visit",
+        label: "Visit site",
+        href: "https://mepicnics.com",
       },
     ],
   },

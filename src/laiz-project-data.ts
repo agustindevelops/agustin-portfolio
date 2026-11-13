@@ -22,22 +22,27 @@ export const laizProject = {
         {
           id: "laiz-mobile-food",
           text: "Food tracking with daily intake records and accessible history",
+          detailHref: "/projects/laiz#mobile-application-the-daily-experience",
         },
         {
           id: "laiz-mobile-activity",
           text: "Activity tracking alongside nutrition in one routine",
+          detailHref: "/projects/laiz#mobile-application-the-daily-experience",
         },
         {
           id: "laiz-mobile-goals",
           text: "Personal goal creation and progress tracking",
+          detailHref: "/projects/laiz#4-turning-the-experiment-into-a-product-design",
         },
         {
           id: "laiz-mobile-plans",
           text: "Plan creation and follow-through tracking",
+          detailHref: "/projects/laiz#4-turning-the-experiment-into-a-product-design",
         },
         {
           id: "laiz-mobile-progress",
           text: "Progress views connecting daily actions with longer-term trends",
+          detailHref: "/projects/laiz#4-turning-the-experiment-into-a-product-design",
         },
       ],
       tags: ["React Native", "Expo", "TypeScript"],
@@ -62,26 +67,32 @@ export const laizProject = {
         {
           id: "laiz-api-fastapi",
           text: "Python/FastAPI backend serving the mobile application's API contracts",
+          detailHref: "/projects/laiz#backend-the-system-behind-the-experience",
         },
         {
           id: "laiz-api-auth",
           text: "Firebase-authenticated endpoints and server-side token verification",
+          detailHref: "/projects/laiz#backend-the-system-behind-the-experience",
         },
         {
           id: "laiz-api-postgres",
           text: "PostgreSQL persistence for application data",
+          detailHref: "/projects/laiz#backend-the-system-behind-the-experience",
         },
         {
           id: "laiz-api-migrations",
           text: "Alembic migrations for version-controlled database changes",
+          detailHref: "/projects/laiz#backend-the-system-behind-the-experience",
         },
         {
           id: "laiz-api-ai",
           text: "OpenAI integration supporting AI-assisted application workflows",
+          detailHref: "/projects/laiz#backend-the-system-behind-the-experience",
         },
         {
           id: "laiz-api-docker",
           text: "Docker-based local development and service configuration",
+          detailHref: "/projects/laiz#backend-the-system-behind-the-experience",
         },
       ],
       tags: [
@@ -103,6 +114,12 @@ export const laizProject = {
     },
   ],
   actions: [
+    {
+      id: "laiz-case-study",
+      label: "Read case study",
+      href: "/projects/laiz",
+      variant: "primary",
+    },
     {
       id: "laiz-website",
       label: "LAIZ project website",

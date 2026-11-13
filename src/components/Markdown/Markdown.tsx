@@ -1,6 +1,14 @@
 import { X } from "lucide-react"
-import { useEffect, useMemo, useRef, useState } from "react"
-import { Streamdown } from "streamdown"
+import {
+  isValidElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ComponentProps,
+  type ReactNode,
+} from "react"
+import { defaultComponents, Streamdown } from "streamdown"
 
 import { cn } from "@/lib/utils"
 
@@ -32,6 +40,56 @@ type MarkdownProps = {
   content: string
   /** Optional classes on the renderer root. */
   className?: string
+}
+
+function headingText(node: ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") return String(node)
+  if (Array.isArray(node)) return node.map(headingText).join("")
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return headingText(node.props.children)
+  }
+  return ""
+}
+
+function headingSlug(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/g, "")
+}
+
+function anchorHeading(tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
+  const Heading = defaultComponents[tag]
+
+  return function AnchoredHeading({
+    children,
+    className,
+    id,
+    ...props
+  }: ComponentProps<typeof Heading>) {
+    const anchor = id || headingSlug(headingText(children)) || undefined
+
+    return (
+      <Heading
+        {...props}
+        id={anchor}
+        className={cn(className, "scroll-mt-24")}
+      >
+        {children}
+      </Heading>
+    )
+  }
+}
+
+const anchoredHeadings = {
+  h1: anchorHeading("h1"),
+  h2: anchorHeading("h2"),
+  h3: anchorHeading("h3"),
+  h4: anchorHeading("h4"),
+  h5: anchorHeading("h5"),
+  h6: anchorHeading("h6"),
 }
 
 function ImageGrid({ images }: { images: MarkdownImage[] }) {
@@ -117,6 +175,7 @@ function Markdown({ content, className }: MarkdownProps) {
           <Streamdown
             key={index}
             mode="static"
+            components={anchoredHeadings}
             plugins={markdownPlugins}
             shikiTheme={["github-light", "github-dark"]}
             mermaid={mermaidOptions}

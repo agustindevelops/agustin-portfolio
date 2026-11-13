@@ -165,8 +165,29 @@ function ScrollToLocation() {
       return
     }
 
-    const id = hash.slice(1)
-    document.getElementById(id)?.scrollIntoView()
+    let id = hash.slice(1)
+    try {
+      id = decodeURIComponent(id)
+    } catch {
+      // Keep the raw fragment when it is not valid encoding.
+    }
+
+    let frame = 0
+    const started = performance.now()
+
+    function tick() {
+      const target = document.getElementById(id)
+      if (target) {
+        target.scrollIntoView()
+        return
+      }
+      if (performance.now() - started < 2500) {
+        frame = requestAnimationFrame(tick)
+      }
+    }
+
+    tick()
+    return () => cancelAnimationFrame(frame)
   }, [pathname, hash])
 
   return null

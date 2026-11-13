@@ -8,6 +8,7 @@ import { usePublicMarkdown } from "@/lib/use-public-markdown"
 
 const caseStudyHrefs: Record<string, string> = {
   "aniah-social-events": "/ase_ecosystem_case_study.md",
+  laiz: "/laiz_case_study.md",
 }
 
 function ProjectPage() {
@@ -25,7 +26,7 @@ function ProjectPage() {
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24">
-      <Link href="/#projects">All projects</Link>
+      <Link href="/#projects">Back to projects</Link>
       {project ? (
         <>
           <div className="mt-8 mb-3 h-1 w-10 rounded-full bg-brand" />

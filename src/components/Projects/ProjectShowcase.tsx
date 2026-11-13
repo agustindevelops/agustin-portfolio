@@ -56,6 +56,9 @@ function ProjectShowcase({
             {project.supportingText}
           </p>
         ) : null}
+        {actions.length > 0 ? (
+          <ProjectActions actions={actions} className="mt-4" />
+        ) : null}
       </header>
       {project.media ? <ProjectMedia media={project.media} /> : null}
       {unitCount > 0 ? (
@@ -69,7 +72,6 @@ function ProjectShowcase({
           ))}
         </div>
       ) : null}
-      {actions.length > 0 ? <ProjectActions actions={actions} /> : null}
     </article>
   )
 }

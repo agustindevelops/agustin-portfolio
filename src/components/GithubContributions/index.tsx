@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import { useEffect, useRef } from "react"
 
 import { Link } from "@/components/ui/link"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -21,10 +22,20 @@ const levelClass = [
 ] as const
 
 function GithubContributions() {
+  const scroller = useRef<HTMLDivElement>(null)
   const { data, isPending, isError } = useQuery({
     queryKey: ["github-contributions", githubProfile],
     queryFn: fetchContributions,
+    staleTime: 0,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
   })
+
+  useEffect(() => {
+    const element = scroller.current
+    if (!element) return
+    element.scrollLeft = element.scrollWidth
+  }, [data])
 
   if (isError) {
     return (
@@ -59,7 +70,7 @@ function GithubContributions() {
           @{githubProfile}
         </Link>
       </div>
-      <div className="overflow-x-auto">
+      <div ref={scroller} className="overflow-x-auto">
         <div className="min-w-[720px]">
           <div className="relative h-4">
             {weeks.map((week, index) => {

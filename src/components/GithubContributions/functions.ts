@@ -50,9 +50,9 @@ const contributionTitle = (day: Contribution) => {
 }
 
 const fetchContributions = async () => {
-  const response = await fetch(
-    `https://github-contributions-api.jogruber.de/v4/${githubProfile}?y=last`,
-  )
+  const response = await fetch("/api/github-contributions", {
+    cache: "no-store",
+  })
   if (!response.ok) throw new Error("Could not load contributions")
   return response.json() as Promise<ContributionResponse>
 }

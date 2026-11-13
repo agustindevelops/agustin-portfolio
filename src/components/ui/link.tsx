@@ -22,10 +22,11 @@ function Link({
     className,
   )
 
-  const isInternal = typeof href === "string" && href.startsWith("/")
   const isExternal = typeof href === "string" && /^https?:\/\//.test(href)
+  const path = typeof href === "string" ? href.split(/[?#]/)[0] : ""
+  const isAppRoute = path.startsWith("/") && !/\.[a-z0-9]+$/i.test(path)
 
-  if (isInternal && href) {
+  if (isAppRoute && href) {
     return (
       <RouterLink to={href} data-slot="link" className={classes} {...props} />
     )

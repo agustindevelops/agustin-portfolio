@@ -5,9 +5,10 @@ import type { PortfolioProject } from "@/components/Projects/types"
 export const profile = {
   name: "Agustin Manriquez Cruz",
   title: "Full Stack Web Developer",
-  location: "Windcrest, TX 78239",
+  location: "Pflugerville, TX",
   phone: "(210) 314-0514",
-  email: "agustinmanriquezcruz@outlook.com",
+  email: "agustindevelops@gmail.com",
+  resume: "/Agustin_Manriquez_Cruz_Resume.pdf",
   availability: "Open to opportunities",
   intro:
     "I solve complex engineering problems and build software that makes people's lives easier.",

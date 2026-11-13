@@ -34,6 +34,7 @@ const navItems = [
   { href: "/#skills", label: "Skills" },
   { href: "/#projects", label: "Projects" },
   { href: "/#education", label: "Education" },
+  { href: "/#contact", label: "Contact" },
 ] as const
 
 function renderUnitIcon(unit: ProjectUnit) {
@@ -106,8 +107,8 @@ function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/#contact" variant="default">
-            Contact
+          <Link href={profile.resume} variant="default" target="_blank" rel="noopener noreferrer">
+            Resume
           </Link>
         </nav>
         <Button
@@ -141,13 +142,15 @@ function Header() {
               </Link>
             ))}
             <Link
-              href="/#contact"
+              href={profile.resume}
               variant="default"
               size="lg"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={close}
               className="mt-2 w-full"
             >
-              Contact
+              Resume
             </Link>
           </div>
         </nav>
@@ -337,12 +340,14 @@ function Home() {
             </p>
           </div>
           <Link
-            href={`mailto:${profile.email}`}
+            href={profile.resume}
             variant="default"
             size="lg"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 h-12 w-full px-8 text-base sm:w-fit"
           >
-            Get in Touch
+            View resume
           </Link>
         </Section>
     </main>

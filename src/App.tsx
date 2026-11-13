@@ -33,7 +33,7 @@ const navItems = [
   { href: "/#experience", label: "Experience" },
   { href: "/#skills", label: "Skills" },
   { href: "/#projects", label: "Projects" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/#education", label: "Education" },
 ] as const
 
 function renderUnitIcon(unit: ProjectUnit) {
@@ -106,8 +106,8 @@ function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/#education" variant="default">
-            Education
+          <Link href="/#contact" variant="default">
+            Contact
           </Link>
         </nav>
         <Button
@@ -141,13 +141,13 @@ function Header() {
               </Link>
             ))}
             <Link
-              href="/#education"
+              href="/#contact"
               variant="default"
               size="lg"
               onClick={close}
               className="mt-2 w-full"
             >
-              Education
+              Contact
             </Link>
           </div>
         </nav>
@@ -309,7 +309,22 @@ function Home() {
           renderUnitIcon={renderUnitIcon}
         />
 
-        <Section id="contact" title="Contact" soft>
+        <Section id="education" title="Education" soft>
+          <div className="space-y-6">
+            {education.map((item) => (
+              <div key={item.school}>
+                <h3 className="text-lg">{item.school}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {item.location}
+                </p>
+                <p className="mt-1">{item.credential}</p>
+                <p className="text-sm text-muted-foreground">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="contact" title="Contact">
           <div className="max-w-xl space-y-2 leading-relaxed">
             <p>{profile.location}</p>
             <p>
@@ -329,21 +344,6 @@ function Home() {
           >
             Get in Touch
           </Link>
-        </Section>
-
-        <Section id="education" title="Education">
-          <div className="space-y-6">
-            {education.map((item) => (
-              <div key={item.school}>
-                <h3 className="text-lg">{item.school}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {item.location}
-                </p>
-                <p className="mt-1">{item.credential}</p>
-                <p className="text-sm text-muted-foreground">{item.detail}</p>
-              </div>
-            ))}
-          </div>
         </Section>
     </main>
   )

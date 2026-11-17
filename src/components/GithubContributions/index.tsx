@@ -14,10 +14,10 @@ import {
 } from "./functions"
 
 const levelClass = [
-  "bg-lilac/70",
-  "bg-brand/25",
-  "bg-brand/45",
+  "bg-lilac",
+  "bg-brand/50",
   "bg-brand/70",
+  "bg-brand/90",
   "bg-brand",
 ] as const
 

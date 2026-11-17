@@ -4,30 +4,32 @@ import type { PortfolioProject } from "@/components/Projects/types"
 
 export const profile = {
   name: "Agustin Manriquez Cruz",
-  title: "Full Stack Web Developer",
+  title: "Fat Stack Software Engineer",
   location: "Pflugerville, TX",
   phone: "(210) 314-0514",
   email: "agustindevelops@gmail.com",
   resume: "/Agustin_Manriquez_Cruz_Resume.pdf",
   availability: "Open to opportunities",
   intro:
-    "I solve complex engineering problems and build software that makes people's lives easier.",
+    "I enjoy tackling complex problems and making them feel simple. My passion for engineering comes from the impact it has on people's lives. My experience spans everything from warehouse operations systems and large-scale marketplaces to mobile applications, with responsibilities ranging from planning and scoping to development and deployment. I am looking for a new home where I can grow my skills to the next level while bringing the lessons I've learned along the way. My biggest flaw is that I want to learn everything, so I thrive best in a fast-paced environment where I can build cool things without compromising integrity.",
   summary:
     "Full stack web developer with experience building client-facing platforms, secure healthcare applications, CMS-backed websites, payment systems, and cloud infrastructure. Skilled across frontend development, backend development, database modeling, authentication, CMS architecture, API integrations, and cloud-based deployments.",
 }
 
 export const stats = [
   {
-    value: "1.2M",
-    label: "Registered accounts supported at BIDFTA",
+    value: "12+ → 4 hrs",
+    label:
+      "Reduced end-of-year auditing time with a system built in just 3 weeks",
   },
   {
     value: "1.2M",
-    label: "Accounts migrated with zero downtime",
+    label: "User accounts migrated with zero downtime at BIDFTA",
   },
   {
     value: "100M+",
-    label: "Products handled by an AI categorization pipeline",
+    label:
+      "Products processed through an AI-powered categorization pipeline",
   },
 ]
 

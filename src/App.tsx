@@ -196,6 +196,22 @@ function ScrollToLocation() {
   return null
 }
 
+const introEmphasis =
+  "My experience spans everything from warehouse operations systems and large-scale marketplaces to mobile applications, with responsibilities ranging from planning and scoping to development and deployment."
+
+function HeroIntro({ text }: { text: string }) {
+  const start = text.indexOf(introEmphasis)
+  if (start === -1) return text
+
+  return (
+    <>
+      {text.slice(0, start)}
+      <strong className="font-semibold">{introEmphasis}</strong>
+      {text.slice(start + introEmphasis.length)}
+    </>
+  )
+}
+
 function Home() {
   return (
     <main>
@@ -215,7 +231,9 @@ function Home() {
               <p className="mt-6 font-heading text-xl font-bold text-brand sm:text-2xl">
                 {profile.title}
               </p>
-              <p className="mt-5 max-w-xl text-lg">{profile.intro}</p>
+              <p className="mt-5 max-w-2xl text-lg">
+                <HeroIntro text={profile.intro} />
+              </p>
               <Link
                 href="/#projects"
                 variant="default"

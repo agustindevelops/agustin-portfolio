@@ -45,21 +45,21 @@ function FunCard({ project }: { project: FunProject }) {
             !flipped && "pointer-events-none",
           )}
         >
-          <h3 className="font-heading text-2xl font-semibold sm:text-3xl">
+          <h3 className="font-heading text-3xl font-semibold sm:text-4xl">
             {project.title}
           </h3>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          <p className="mt-4 text-xl leading-relaxed text-muted-foreground sm:text-2xl">
             {project.description}
           </p>
           <div className="mt-auto flex items-center justify-between gap-3 pt-5">
             <button
               type="button"
-              className="cursor-pointer text-base font-medium text-brand hover:text-brand/80"
+              className="cursor-pointer text-lg font-medium text-brand hover:text-brand/80"
               onClick={() => setFlipped(false)}
             >
               Back
             </button>
-            <Link href={project.href} className="text-base">
+            <Link href={project.href} className="text-lg">
               {project.actionLabel}
             </Link>
           </div>

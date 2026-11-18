@@ -9,59 +9,76 @@ export interface FunProjectsSectionProps {
   projects: readonly FunProject[]
 }
 
+const faceFrame =
+  "absolute inset-0 [transform-style:preserve-3d]"
+
 function FunCard({ project }: { project: FunProject }) {
   const [flipped, setFlipped] = useState(false)
 
   return (
-    <div className="[perspective:1200px]">
+    <div className="@container [perspective:1200px]">
       <div
         className={cn(
           "relative aspect-[1024/894] transition-transform duration-500 [transform-style:preserve-3d] motion-reduce:transition-none",
-          flipped && "[transform:rotateY(180deg)]",
+          flipped ? "[transform:rotateY(180deg)]" : "[transform:rotateY(0deg)]",
         )}
       >
         <div
           className={cn(
-            "absolute inset-0 overflow-hidden rounded-xl bg-[#f6efe8] ring-1 ring-border [backface-visibility:hidden]",
-            flipped && "pointer-events-none",
+            faceFrame,
+            "[transform:translateZ(1px)]",
+            flipped && "pointer-events-none opacity-0",
           )}
         >
-          <img
-            src={project.image}
-            alt={project.title}
-            className="size-full object-cover object-center"
-          />
-          <button
-            type="button"
-            className="absolute right-3 bottom-3 cursor-pointer rounded-full bg-background px-3 py-1.5 text-sm font-medium text-brand ring-2 ring-brand shadow-sm transition-colors hover:bg-background hover:ring-brand"
-            onClick={() => setFlipped(true)}
-          >
-            Learn more
-          </button>
+          <div className="absolute inset-0 overflow-hidden rounded-xl bg-[#f6efe8] ring-1 ring-border">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="size-full object-cover object-center"
+            />
+            <div className="absolute inset-x-2 bottom-2 flex flex-wrap items-center justify-end gap-2">
+              <Link
+                href={project.href}
+                className="rounded-full bg-brand px-3 py-1.5 text-sm font-medium text-background no-underline shadow-sm hover:bg-brand/90 hover:text-background"
+              >
+                {project.actionLabel}
+              </Link>
+              <button
+                type="button"
+                className="cursor-pointer rounded-full bg-background px-3 py-1.5 text-sm font-medium text-brand ring-2 ring-brand shadow-sm transition-colors hover:bg-background"
+                onClick={() => setFlipped(true)}
+              >
+                Learn more
+              </button>
+            </div>
+          </div>
         </div>
         <div
           className={cn(
-            "absolute inset-0 flex flex-col overflow-hidden rounded-xl bg-card p-4 ring-1 ring-border [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-5",
-            !flipped && "pointer-events-none",
+            faceFrame,
+            "[transform:rotateY(180deg)_translateZ(1px)]",
+            !flipped && "pointer-events-none opacity-0",
           )}
         >
-          <h3 className="font-heading text-lg font-semibold leading-tight sm:text-3xl md:text-4xl">
-            {project.title}
-          </h3>
-          <p className="mt-2 text-sm leading-snug text-muted-foreground sm:mt-4 sm:text-xl sm:leading-relaxed md:text-2xl">
-            {project.description}
-          </p>
-          <div className="mt-auto flex shrink-0 items-center justify-between gap-3 pt-3 sm:pt-5">
-            <button
-              type="button"
-              className="cursor-pointer text-sm font-medium text-brand hover:text-brand/80 sm:text-lg"
-              onClick={() => setFlipped(false)}
-            >
-              Back
-            </button>
-            <Link href={project.href} className="text-sm sm:text-lg">
-              {project.actionLabel}
-            </Link>
+          <div className="absolute inset-0 flex flex-col overflow-hidden rounded-xl bg-card p-4 ring-1 ring-border @min-[36rem]:p-5">
+            <h3 className="font-heading text-base font-semibold leading-tight @min-[22rem]:text-lg @min-[30rem]:text-2xl @min-[36rem]:text-4xl">
+              {project.title}
+            </h3>
+            <p className="mt-2 text-sm leading-snug text-muted-foreground @min-[22rem]:text-base @min-[22rem]:leading-relaxed @min-[30rem]:text-lg @min-[36rem]:mt-4 @min-[36rem]:text-2xl">
+              {project.description}
+            </p>
+            <div className="mt-auto flex shrink-0 items-center justify-between gap-3 pt-3 @min-[30rem]:pt-5">
+              <button
+                type="button"
+                className="cursor-pointer text-sm font-medium text-brand hover:text-brand/80 @min-[30rem]:text-lg"
+                onClick={() => setFlipped(false)}
+              >
+                Back
+              </button>
+              <Link href={project.href} className="text-sm @min-[30rem]:text-lg">
+                {project.actionLabel}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

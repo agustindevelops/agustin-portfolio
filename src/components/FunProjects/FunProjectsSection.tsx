@@ -29,11 +29,11 @@ function FunCard({ project }: { project: FunProject }) {
           <img
             src={project.image}
             alt={project.title}
-            className="size-full object-contain"
+            className="size-full object-cover object-center"
           />
           <button
             type="button"
-            className="absolute right-3 bottom-3 cursor-pointer rounded-full bg-background/95 px-3 py-1.5 text-sm font-medium text-brand ring-1 ring-border transition-colors hover:bg-background"
+            className="absolute right-3 bottom-3 cursor-pointer rounded-full bg-background px-3 py-1.5 text-sm font-medium text-brand ring-2 ring-brand shadow-sm transition-colors hover:bg-background hover:ring-brand"
             onClick={() => setFlipped(true)}
           >
             Learn more
@@ -45,20 +45,22 @@ function FunCard({ project }: { project: FunProject }) {
             !flipped && "pointer-events-none",
           )}
         >
-          <h3 className="font-heading text-lg font-semibold">{project.title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          <h3 className="font-heading text-2xl font-semibold sm:text-3xl">
+            {project.title}
+          </h3>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground sm:text-xl">
             {project.description}
           </p>
-          <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+          <div className="mt-auto flex items-center justify-between gap-3 pt-5">
             <button
               type="button"
-              className="cursor-pointer text-sm font-medium text-brand hover:text-brand/80"
+              className="cursor-pointer text-base font-medium text-brand hover:text-brand/80"
               onClick={() => setFlipped(false)}
             >
               Back
             </button>
-            <Link href={project.href} className="text-sm">
-              Open calculator
+            <Link href={project.href} className="text-base">
+              {project.actionLabel}
             </Link>
           </div>
         </div>

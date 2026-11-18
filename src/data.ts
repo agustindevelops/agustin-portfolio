@@ -187,6 +187,7 @@ export type FunProject = {
   description: string
   image: string
   href: string
+  actionLabel: string
 }
 
 export const funProjects: FunProject[] = [
@@ -197,6 +198,16 @@ export const funProjects: FunProject[] = [
       "I built this during a short time installing balloons at Pop and Drop, so my coworkers and I could see how many balloons to grab and mock up a garland before we started building.",
     image: "/fun/balloon-calculator.png",
     href: "https://balloon-calculator.vercel.app/?feet=12&style=color-blocked&c=color-0%3ABlush%3Ae8a0bf%3A8%3A0&c=color-1%3ASky%3A7eb8da%3A8%3A0&c=color-2%3AGold%3Af2c14e%3A8%3A0",
+    actionLabel: "Open calculator",
+  },
+  {
+    id: "thanksgiving-potluck",
+    title: "Thanksgiving Potluck",
+    description:
+      "I love potlucks, but sometimes coordinating one can lead to too much of something and not enough of another. There is also a lot of back and forth when figuring out what to bring. This little project was to help me host potlucks by giving everyone one place to see the same list.",
+    image: "/fun/thanksgiving-potluck.png",
+    href: "https://aniah-and-agustin.vercel.app/",
+    actionLabel: "Open potluck",
   },
 ]
 

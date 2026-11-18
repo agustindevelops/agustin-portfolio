@@ -41,25 +41,25 @@ function FunCard({ project }: { project: FunProject }) {
         </div>
         <div
           className={cn(
-            "absolute inset-0 flex flex-col overflow-hidden rounded-xl bg-card p-5 ring-1 ring-border [backface-visibility:hidden] [transform:rotateY(180deg)]",
+            "absolute inset-0 flex flex-col overflow-hidden rounded-xl bg-card p-4 ring-1 ring-border [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-5",
             !flipped && "pointer-events-none",
           )}
         >
-          <h3 className="font-heading text-3xl font-semibold sm:text-4xl">
+          <h3 className="font-heading text-lg font-semibold leading-tight sm:text-3xl md:text-4xl">
             {project.title}
           </h3>
-          <p className="mt-4 text-xl leading-relaxed text-muted-foreground sm:text-2xl">
+          <p className="mt-2 text-sm leading-snug text-muted-foreground sm:mt-4 sm:text-xl sm:leading-relaxed md:text-2xl">
             {project.description}
           </p>
-          <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+          <div className="mt-auto flex shrink-0 items-center justify-between gap-3 pt-3 sm:pt-5">
             <button
               type="button"
-              className="cursor-pointer text-lg font-medium text-brand hover:text-brand/80"
+              className="cursor-pointer text-sm font-medium text-brand hover:text-brand/80 sm:text-lg"
               onClick={() => setFlipped(false)}
             >
               Back
             </button>
-            <Link href={project.href} className="text-lg">
+            <Link href={project.href} className="text-sm sm:text-lg">
               {project.actionLabel}
             </Link>
           </div>

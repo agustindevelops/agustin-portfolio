@@ -181,6 +181,25 @@ export const projects: PortfolioProject[] = [
   },
 ]
 
+export type FunProject = {
+  id: string
+  title: string
+  description: string
+  image: string
+  href: string
+}
+
+export const funProjects: FunProject[] = [
+  {
+    id: "balloon-calculator",
+    title: "Balloon Garland Calculator",
+    description:
+      "I built this during a short time installing balloons at Pop and Drop, so my coworkers and I could see how many balloons to grab and mock up a garland before we started building.",
+    image: "/fun/balloon-calculator.png",
+    href: "https://balloon-calculator.vercel.app/?feet=12&style=color-blocked&c=color-0%3ABlush%3Ae8a0bf%3A8%3A0&c=color-1%3ASky%3A7eb8da%3A8%3A0&c=color-2%3AGold%3Af2c14e%3A8%3A0",
+  },
+]
+
 export const markdownDemo = {
   id: "markdown-demo",
   markdown: `# Markdown component preview

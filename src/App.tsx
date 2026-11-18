@@ -14,12 +14,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { FunProjectsSection } from "@/components/FunProjects"
 import { GithubContributions } from "@/components/GithubContributions"
 import { ProjectsSection, type ProjectUnit } from "@/components/Projects"
 import { Link } from "@/components/ui/link"
 import {
   education,
   experience,
+  funProjects,
   profile,
   projects,
   skillGroups,
@@ -329,6 +331,8 @@ function Home() {
           projects={projects}
           renderUnitIcon={renderUnitIcon}
         />
+
+        <FunProjectsSection projects={funProjects} />
 
         <Section id="education" title="Education" soft>
           <div className="space-y-6">

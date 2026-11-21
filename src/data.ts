@@ -1,6 +1,7 @@
 import { aseProject } from "@/ase-project-data"
 import { laizProject } from "@/laiz-project-data"
 import type { PortfolioProject } from "@/components/Projects/types"
+import type { Experience } from "@/experience"
 
 export const profile = {
   name: "Agustin Manriquez Cruz",
@@ -33,7 +34,7 @@ export const stats = [
   },
 ]
 
-export const experience = [
+export const experience: Experience[] = [
   {
     role: "Full Stack Senior Software Developer",
     company: "BIDFTA",

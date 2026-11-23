@@ -2,9 +2,16 @@ import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
-const url =
-  process.env.AGUSTIN_PORTFOLIO_URL ??
-  "http://localhost:3000/api/agustin-portfolio"
+const username = process.env.PORTFOLIO_USERNAME?.trim().toLowerCase()
+if (!username) {
+  throw new Error("PORTFOLIO_USERNAME is not set")
+}
+
+const origin = (process.env.PORTFOLIO_API_ORIGIN ?? "http://localhost:3000").replace(
+  /\/$/,
+  "",
+)
+const url = `${origin}/api/portfolio/${encodeURIComponent(username)}`
 
 const cardFields = ["role", "company", "url", "location", "dates"]
 
@@ -27,12 +34,12 @@ function assertCard(value, index) {
 
 const response = await fetch(url)
 if (!response.ok) {
-  throw new Error(`Agustin portfolio request failed (${response.status}) ${url}`)
+  throw new Error(`Portfolio request failed (${response.status}) ${url}`)
 }
 
 const body = await response.json()
 if (!Array.isArray(body.experience) || body.experience.length === 0) {
-  throw new Error("Agustin portfolio response is missing experience cards")
+  throw new Error("Portfolio response is missing experience cards")
 }
 body.experience.forEach(assertCard)
 
@@ -43,6 +50,6 @@ export const experience: Experience[] = ${JSON.stringify(body.experience, null, 
 
 const outDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/generated")
 await mkdir(outDir, { recursive: true })
-await writeFile(path.join(outDir, "agustin-portfolio.ts"), source)
+await writeFile(path.join(outDir, "portfolio.ts"), source)
 
 console.log(`Wrote ${body.experience.length} experience cards from ${url}`)

@@ -2,7 +2,7 @@ import { aseProject } from "@/ase-project-data"
 import { laizProject } from "@/laiz-project-data"
 import type { PortfolioProject } from "@/components/Projects/types"
 
-export { experience } from "@/generated/agustin-portfolio"
+export { experience } from "@/generated/portfolio"
 
 export const profile = {
   name: "Agustin Manriquez Cruz",
